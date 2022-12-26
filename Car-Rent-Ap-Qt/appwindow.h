@@ -19,6 +19,17 @@ public:
     explicit AppWindow(QWidget *parent = nullptr);
     ~AppWindow();
 
+private slots:
+    void on_ProfileBtn_clicked();
+
+    void on_RentCarBtn_clicked();
+
+    void on_ReturnCarBtn_clicked();
+
+    void on_PriceBtn_clicked();
+
+    void on_LogoutBtn_clicked();
+
 private:
     Ui::AppWindow *ui;
 };

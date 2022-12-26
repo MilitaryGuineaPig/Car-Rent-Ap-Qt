@@ -1,5 +1,6 @@
 #include "appwindow.h"
 #include "ui_appwindow.h"
+#include "authorization.h"
 
 #include <QSqlTableModel>
 #include <QTableView>
@@ -16,8 +17,20 @@ AppWindow::AppWindow(QWidget *parent) :
         tableModel = new QSqlTableModel();
         tableModel->setTable("cars");
         tableModel->select();
-        ui->DbView->setModel(tableModel);
-        ui->DbView->show();
+        ui->RentCarDbView->setModel(tableModel);
+        ui->RentCarDbView->show();
 }
 
 AppWindow::~AppWindow(){ delete ui;}
+
+void AppWindow::on_ProfileBtn_clicked(){ ui->stackedWidget->setCurrentIndex(0); }
+void AppWindow::on_RentCarBtn_clicked(){ ui->stackedWidget->setCurrentIndex(1); }
+void AppWindow::on_ReturnCarBtn_clicked(){ ui->stackedWidget->setCurrentIndex(2); }
+void AppWindow::on_PriceBtn_clicked(){ ui->stackedWidget->setCurrentIndex(3); }
+void AppWindow::on_LogoutBtn_clicked(){
+    hide();
+    authorization AppWind;
+    AppWind.setModal(true);
+    AppWind.exec();
+}
+
