@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>569</width>
-    <height>632</height>
+    <width>496</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>260</y>
+     <y>250</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -52,7 +52,7 @@ color: rgba(0, 0, 0, 150);</string>
    <property name="geometry">
     <rect>
      <x>188</x>
-     <y>130</y>
+     <y>120</y>
      <width>126</width>
      <height>126</height>
     </rect>
@@ -99,6 +99,9 @@ text-align: center;
    <property name="text">
     <string>Create account</string>
    </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="BlurImage">
    <property name="geometry">
@@ -123,7 +126,7 @@ border-radius: 30px;
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>290</y>
+     <y>280</y>
      <width>150</width>
      <height>25</height>
     </rect>
@@ -140,7 +143,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>320</y>
+     <y>310</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -172,7 +175,7 @@ color: rgba(0, 0, 0, 150);</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>350</y>
+     <y>340</y>
      <width>150</width>
      <height>25</height>
     </rect>
@@ -188,14 +191,14 @@ border-radius: 10px;</string>
   <widget class="QLabel" name="infoDB">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>370</y>
-     <width>91</width>
+     <x>140</x>
+     <y>110</y>
+     <width>31</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>[+]STATUS</string>
+    <string>-</string>
    </property>
   </widget>
   <widget class="QLabel" name="BgImage">
@@ -204,11 +207,12 @@ border-radius: 10px;</string>
      <x>-2</x>
      <y>0</y>
      <width>500</width>
-     <height>631</height>
+     <height>600</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(0, 0, 0);</string>
+    <string notr="true">background-image: url(:/images/darkBg.jpg);
+background-size: auto;</string>
    </property>
    <property name="text">
     <string/>
@@ -218,7 +222,7 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>390</y>
+     <y>400</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -244,6 +248,19 @@ text-align: center;
     <string>Sing In</string>
    </property>
   </widget>
+  <widget class="QLabel" name="ErrorText">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>370</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
   <zorder>BgImage</zorder>
   <zorder>BlurImage</zorder>
   <zorder>CreateBtn</zorder>
@@ -253,6 +270,7 @@ text-align: center;
   <zorder>infoDB</zorder>
   <zorder>UserText</zorder>
   <zorder>PasswdText</zorder>
+  <zorder>ErrorText</zorder>
   <zorder>SingInBtn</zorder>
  </widget>
  <resources>

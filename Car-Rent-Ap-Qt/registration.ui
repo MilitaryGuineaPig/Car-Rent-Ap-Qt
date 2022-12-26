@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>609</height>
+    <width>500</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,9 @@
    <property name="styleSheet">
     <string notr="true">background-color: rgba(255, 255, 255, 100);
 border-radius: 10px;</string>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="LastNameInput">
@@ -185,8 +188,9 @@ border-radius: 10px;</string>
 background-color: rgba(255, 255, 255, 100);
 border-radius: 10px;
 color: rgba(192, 192, 192, 240);
-color: red;
+color: black;
 text-align: center;
+font: 700 11pt &quot;Segoe Print&quot;;
 }
 
 QPushButton:hover{
@@ -194,12 +198,14 @@ background-color: rgba(255, 255, 255, 0);
 border-radius: 10px;
 color: rgba(0, 0, 0, 240);
 text-align: center;
+font: 700 11pt &quot;Segoe Print&quot;;
 }
 QPushButton:pressed{
 background-color: rgba(255, 255, 255, 0);
 border-radius: 10px;
 color: rgba(128, 128, 128, 240);
 text-align: center;
+font: 700 11pt &quot;Segoe Print&quot;;
 }</string>
    </property>
    <property name="text">
@@ -361,12 +367,13 @@ color: rgba(0, 0, 0, 150);</string>
     <rect>
      <x>0</x>
      <y>-10</y>
-     <width>531</width>
-     <height>611</height>
+     <width>500</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"> background-color: black;
+    <string notr="true">background-image: url(:/images/darkBg.jpg);
+background-size: auto;
 </string>
    </property>
    <property name="text">
@@ -451,7 +458,7 @@ color: rgba(0, 0, 0, 150);</string>
 color: rgba(0, 0, 0, 150);</string>
    </property>
    <property name="text">
-    <string> </string>
+    <string/>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

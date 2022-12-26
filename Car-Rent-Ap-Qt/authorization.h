@@ -26,6 +26,7 @@ private slots:
 
 private:
     Ui::authorization *ui;
+
 };
 
 #endif // AUTHORIZATION_H

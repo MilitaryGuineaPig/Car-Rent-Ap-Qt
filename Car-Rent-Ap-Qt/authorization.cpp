@@ -1,8 +1,6 @@
 #include "authorization.h"
-#include "applicationwindow.h"
+#include "appwindow.h"
 #include "registration.h"
-#include "applicationwindow.h"
-#include "authorization.h"
 #include "ui_authorization.h"
 
 authorization::authorization(QWidget *parent) :
@@ -10,15 +8,15 @@ authorization::authorization(QWidget *parent) :
     ui(new Ui::authorization){
     ui->setupUi(this);
 
-    QSqlDatabase mydb;
+        QSqlDatabase mydb;
         mydb = QSqlDatabase::addDatabase("QMYSQL");
         mydb.setHostName("localhost");
         mydb.setUserName("root");
         mydb.setPort(3306);
         mydb.setPassword("0000");
         mydb.setDatabaseName("carrentdb");
-        if (!mydb.open()){ui->infoDB->setText("Failed");}
-        else{ui->infoDB->setText("Connected...");}
+        if (!mydb.open()){ui->infoDB->setText("000");}
+        else{ui->infoDB->setText("111");}
 }
 
 authorization::~authorization()
@@ -50,11 +48,11 @@ void authorization::on_SingInBtn_clicked(){
            qDebug("User logged in successfully. User ID: %d", userId);
 
            hide();
-           ApplicationWindow AppWind;
+           AppWindow AppWind;
            AppWind.setModal(true);
            AppWind.exec();
        } else {
-           qDebug("Invalid username or password");
+           ui->ErrorText->setText("Invalid username or password");
        }
 
 }
