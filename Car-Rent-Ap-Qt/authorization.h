@@ -7,12 +7,12 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-namespace Ui {
-class authorization;
-}
+int getId();
+void setId(int id);
 
-class authorization : public QDialog
-{
+namespace Ui {class authorization;}
+
+class authorization : public QDialog{
     Q_OBJECT
 
 public:
@@ -21,7 +21,6 @@ public:
 
 private slots:
     void on_CreateBtn_clicked();
-
     void on_SingInBtn_clicked();
 
 private:

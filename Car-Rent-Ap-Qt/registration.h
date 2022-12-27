@@ -2,18 +2,14 @@
 #define REGISTRATION_H
 
 #include <QDialog>
-
 #include <QtSql>
 #include <QDebug>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-namespace Ui {
-class Registration;
-}
+namespace Ui {class Registration;}
 
-class Registration : public QDialog
-{
+class Registration : public QDialog{
     Q_OBJECT
 
 public:

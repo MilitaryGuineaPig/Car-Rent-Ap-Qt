@@ -7,12 +7,9 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-namespace Ui {
-class AppWindow;
-}
+namespace Ui {class AppWindow;}
 
-class AppWindow : public QDialog
-{
+class AppWindow : public QDialog{
     Q_OBJECT
 
 public:

@@ -1,28 +1,31 @@
 #include "authorization.h"
+#include "ui_authorization.h"
 #include "appwindow.h"
 #include "registration.h"
-#include "ui_authorization.h"
+
+int userId = 0;
+int getId(){return userId;}
+void setId(int id){userId=id;}
 
 authorization::authorization(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::authorization){
+
     ui->setupUi(this);
 
-        QSqlDatabase mydb;
-        mydb = QSqlDatabase::addDatabase("QMYSQL");
-        mydb.setHostName("localhost");
-        mydb.setUserName("root");
-        mydb.setPort(3306);
-        mydb.setPassword("0000");
-        mydb.setDatabaseName("carrentdb");
-        if (!mydb.open()){ui->infoDB->setText("000");}
-        else{ui->infoDB->setText("111");}
+    QSqlDatabase mydb;
+    mydb = QSqlDatabase::addDatabase("QMYSQL");
+    mydb.setHostName("localhost");
+    mydb.setUserName("root");
+    mydb.setPort(3306);
+    mydb.setPassword("0000");
+    mydb.setDatabaseName("carrentdb");
+    if (!mydb.open()){ui->infoDB->setText("000");}
+    else{ui->infoDB->setText("111");}
+
 }
 
-authorization::~authorization()
-{
-    delete ui;
-}
+authorization::~authorization(){ delete ui;}
 
 void authorization::on_CreateBtn_clicked(){
     hide();
@@ -30,7 +33,6 @@ void authorization::on_CreateBtn_clicked(){
     RegForm.setModal(true);
     RegForm.exec();
 }
-
 
 void authorization::on_SingInBtn_clicked(){
     QString username, password;
@@ -44,9 +46,8 @@ void authorization::on_SingInBtn_clicked(){
            qFatal("Query failed: %s", qPrintable(query.lastError().text()));
        }
        if (query.next()) {
-           int userId = query.value(0).toInt();
+           userId = query.value(0).toInt();
            qDebug("User logged in successfully. User ID: %d", userId);
-
            hide();
            AppWindow AppWind;
            AppWind.setModal(true);

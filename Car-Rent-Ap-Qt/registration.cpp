@@ -9,9 +9,7 @@ Registration::Registration(QWidget *parent) :
 
 }
 
-Registration::~Registration(){
-    delete ui;
-}
+Registration::~Registration(){delete ui;}
 
 void Registration::on_RegistrBtn_clicked(){
        QString firstname, lastname, email, username, password, confpassword;
@@ -69,6 +67,5 @@ void Registration::on_RegistrBtn_clicked(){
        else {
           ui->ErrorText->setText("Something went wrong with database!");
        }
-
 
 }
