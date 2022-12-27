@@ -27,6 +27,12 @@ private slots:
 
     void on_LogoutBtn_clicked();
 
+    void on_RentBtn_clicked();
+
+    void on_ReturnBtn_clicked();
+
+    void refreshTableViews();
+
 private:
     Ui::AppWindow *ui;
 };

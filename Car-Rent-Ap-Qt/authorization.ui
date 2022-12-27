@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>496</width>
-    <height>601</height>
+    <width>495</width>
+    <height>599</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -204,7 +204,7 @@ border-radius: 10px;</string>
   <widget class="QLabel" name="BgImage">
    <property name="geometry">
     <rect>
-     <x>-2</x>
+     <x>0</x>
      <y>0</y>
      <width>500</width>
      <height>600</height>
@@ -212,7 +212,7 @@ border-radius: 10px;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-image: url(:/images/darkBg.jpg);
-background-size: auto;</string>
+</string>
    </property>
    <property name="text">
     <string/>

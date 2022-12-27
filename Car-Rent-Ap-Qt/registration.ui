@@ -372,9 +372,7 @@ color: rgba(0, 0, 0, 150);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/darkBg.jpg);
-background-size: auto;
-</string>
+    <string notr="true">background-image: url(:/images/darkBg.jpg);</string>
    </property>
    <property name="text">
     <string/>
