@@ -33,8 +33,8 @@ void Registration::on_RegistrBtn_clicked(){
                  if(password == confpassword){
                      query.prepare("SELECT id FROM usersdata WHERE id = (SELECT MAX(id) FROM usersdata)");
                      if (query.exec()) {
-                       if (query.first()) { id = query.value(0).toInt();}
-                     }
+                        if (query.first()) { id = query.value(0).toInt();}
+                        }
                      else { id = 0; }
 
                      query.prepare("INSERT INTO usersdata (id, firstname, lastname, email, username, password) VALUES (:id, :firstname, :lastname, :email, :username, :password)");
