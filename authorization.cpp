@@ -13,12 +13,21 @@ authorization::authorization(QWidget *parent) :
 
     ui->setupUi(this);
 
+    QFile file("D:\\GitHub\\HidenDocs\\passwd.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QTextStream stream(&file);
+    QString hostName = stream.readLine();
+    QString userName = stream.readLine();
+    QString password = stream.readLine();
+    file.close();
+
     QSqlDatabase mydb;
     mydb = QSqlDatabase::addDatabase("QMYSQL");
-    mydb.setHostName("localhost");
-    mydb.setUserName("root");
+    mydb.setHostName(hostName);
+    mydb.setUserName(userName);
     mydb.setPort(3306);
-    mydb.setPassword("0000");
+    mydb.setPassword(password);
     mydb.setDatabaseName("carrentdb");
     mydb.open();
     if (!mydb.isOpen()){ui->infoDB->setText("Error");}
