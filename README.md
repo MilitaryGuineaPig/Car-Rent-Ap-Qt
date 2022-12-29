@@ -1,8 +1,7 @@
 # Car Rent Application in Qt
-Hi there! I made a car rental program using the Qt framework. 
-
+Hi there 👋 
+I made a car rental program using the Qt framework. 
 All fields with error detection!
-
 In this program, you can:
 
  - Login to your account
@@ -22,4 +21,4 @@ In this program, you can:
  ![Registration](https://github.com/MilitaryGuineaPig/Car-Rent-Ap-Qt/blob/main/AppDesign/PriceTab.png)
  - Logout
 
- If any of the information is unclear, please don't hesitate to ask for clarification.
+ If any of the information is unclear, please don't hesitate to ask for clarification ✌️ 
