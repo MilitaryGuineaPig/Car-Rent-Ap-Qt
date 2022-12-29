@@ -12,11 +12,12 @@ Registration::Registration(QWidget *parent) :
 Registration::~Registration(){delete ui;}
 
 void Registration::on_RegistrBtn_clicked(){
-       QString firstname, lastname, email, username, password, confpassword;
+       QString firstname, lastname, email, phone, username, password, confpassword;
        static int id;
        firstname = ui->FirstNameInput->text();
        lastname = ui->LastNameInput->text();
        email = ui->EmailInput->text();
+       phone = ui->PhoneInput->text();
        username = ui->UserInput->text();
        password = ui->PasswdInput->text();
        confpassword = ui->ConfirmPasswdInput->text();
@@ -37,11 +38,12 @@ void Registration::on_RegistrBtn_clicked(){
                         }
                      else { id = 0; }
 
-                     query.prepare("INSERT INTO usersdata (id, firstname, lastname, email, username, password) VALUES (:id, :firstname, :lastname, :email, :username, :password)");
+                     query.prepare("INSERT INTO usersdata (id, firstname, lastname, email, phone, username, password) VALUES (:id, :firstname, :lastname, :email, :phone, :username, :password)");
                      query.bindValue(":id", ++id); // Assuming that you have a variable called "id" that contains the value for the id column
                      query.bindValue(":firstname", firstname);
                      query.bindValue(":lastname", lastname);
                      query.bindValue(":email", email);
+                     query.bindValue(":phone", phone);
                      query.bindValue(":username", username);
                      query.bindValue(":password", password);
                      if (!query.exec()) {

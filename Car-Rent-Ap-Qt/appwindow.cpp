@@ -17,19 +17,21 @@ AppWindow::AppWindow(QWidget *parent) :
     ui->setupUi(this);
     //Profile part
     QSqlQuery queryProfile;
-      queryProfile.prepare("SELECT firstname, lastname, email, username, password FROM usersdata WHERE id = :id");
+      queryProfile.prepare("SELECT firstname, lastname, email, phone, username, password FROM usersdata WHERE id = :id");
       queryProfile.bindValue(":id", getId()); // Replace 1 with the desired user ID
       if (queryProfile.exec()) {
         while (queryProfile.next()) {
         QString firstname = queryProfile.value(0).toString();
         QString lastname = queryProfile.value(1).toString();
         QString email = queryProfile.value(2).toString();
-        QString username = queryProfile.value(3).toString();
-        QString password = queryProfile.value(4).toString();
+        QString phone = queryProfile.value(3).toString();
+        QString username = queryProfile.value(4).toString();
+        QString password = queryProfile.value(5).toString();
 
         ui->FirstNameText_2->setText(firstname);
         ui->LastNameText_2->setText(lastname);
         ui->EmailText_2->setText(email);
+        ui->PhoneText_2->setText(phone);
         ui->UsernameText_2->setText(username);
         ui->PasswordText_2->setText(password);
       }
@@ -79,16 +81,19 @@ AppWindow::AppWindow(QWidget *parent) :
         tableModelPrice->setFilter(filterStringg);
       tableModelPrice->select();
       ui->PriceDbView->setModel(tableModelPrice);
-      ui->PriceDbView->setColumnWidth(0, 30);
+      ui->PriceDbView->setColumnWidth(0, 40);
       ui->PriceDbView->hideColumn(1);
       ui->PriceDbView->hideColumn(2);
-      ui->PriceDbView->setColumnWidth(3, 130);
-      ui->PriceDbView->setColumnWidth(4, 130);
-      ui->PriceDbView->setColumnWidth(5, 80);
-      ui->PriceDbView->setColumnWidth(6, 50);
+      ui->PriceDbView->setColumnWidth(3, 90);
+      ui->PriceDbView->setColumnWidth(4, 90);
+      ui->PriceDbView->setColumnWidth(5, 120);
+      ui->PriceDbView->setColumnWidth(6, 130);
+      ui->PriceDbView->setColumnWidth(7, 70);
+      ui->PriceDbView->hideColumn(8);
       ui->PriceDbView->show();
-    //
 
+
+    //The end
 }
 
 AppWindow::~AppWindow(){ delete ui;}
@@ -122,7 +127,7 @@ void AppWindow::on_RentBtn_clicked() {
     QString carsId = ui->CarsIdInput->text();
     // Check if the car is already rented
     QSqlQuery query;
-     query.prepare("SELECT rentedbyid FROM cars WHERE id = :id");
+     query.prepare("SELECT rentedbyid, brand, model FROM cars WHERE id = :id");
      query.bindValue(":id", carsId);
     if (!query.exec()) {
         ui->ErrorText->setText("Error opening!");
@@ -135,6 +140,8 @@ void AppWindow::on_RentBtn_clicked() {
         return;
     }
     int rentedbyid = query.value(0).toInt();
+    QString brand= query.value(1).toString();
+    QString model= query.value(2).toString();
     if (rentedbyid != 0) {
         ui->ErrorText->setText("Car already rented!");
         QTimer::singleShot(2000, [this] { ui->ErrorText->setText(""); });
@@ -159,11 +166,13 @@ void AppWindow::on_RentBtn_clicked() {
       else { noteid = 0;}
 
       QDate currdate = QDate::currentDate();
-        queryRentDate.prepare("INSERT INTO rentdatedb (idnote, userid, carid, daterent) VALUES (:idnote, :userid, :carid, :daterent)");
+        queryRentDate.prepare("INSERT INTO rentdatedb (idnote, userid, carid, daterent, brand, model) VALUES (:idnote, :userid, :carid, :daterent, :brand, :model)");
         queryRentDate.bindValue(":idnote", ++noteid);
         queryRentDate.bindValue(":userid", getId());
         queryRentDate.bindValue(":carid", carsId);
         queryRentDate.bindValue(":daterent", currdate);
+        queryRentDate.bindValue(":brand", brand);
+        queryRentDate.bindValue(":model", model);
         if (!queryRentDate.exec()) {
           ui->ErrorText->setText("Error inserting!");
           QTimer::singleShot(2000, [this] { ui->ErrorText->setText(""); });
@@ -171,6 +180,7 @@ void AppWindow::on_RentBtn_clicked() {
          }
 
       ui->ErrorText->setText("Rented!");
+      ui->CarsIdInput->setText("");
       QTimer::singleShot(2000, [this] { ui->ErrorText->setText(""); });
 
     // Refresh the table views
@@ -180,7 +190,6 @@ void AppWindow::on_RentBtn_clicked() {
 //Return A Car Part
 void AppWindow::on_ReturnBtn_clicked() {
     QString carId = ui->CarsIdReturnInput->text();
-
 
     // Check if the car is already rented
     QSqlQuery queryCheck;
@@ -232,41 +241,32 @@ void AppWindow::on_ReturnBtn_clicked() {
     // The query was successful and there are records in the result set
     QDate rentDate = queryDate.value(0).toDate();
     QDate returnDate = queryDate.value(1).toDate();
-    int days = rentDate.daysTo(returnDate) + 5;
-     if (!queryDate.exec()) {
-       ui->ErrorText_2->setText("Error date selection");
-       return;
-     }
-     if (!queryDate.next()) {
-       ui->ErrorText_2->setText("Car not found");
-       return;
-     }
+    int days = rentDate.daysTo(returnDate) + 1;
 
-
-    //count price
     QSqlQuery queryCarPrice;
-      queryCarPrice.prepare("SELECT price FROM cars WHERE id = :id");
-      queryCarPrice.bindValue(":id", carId);
-     int rentpriceday = queryCarPrice.value(0).toInt();
-     if (!queryCarPrice.exec()) {
-       ui->ErrorText_2->setText("Error updating price and days");
-       return;
-     }
-     int price = days * rentpriceday;
+    queryCarPrice.prepare("SELECT price FROM cars WHERE id = :id");
+    queryCarPrice.bindValue(":id", carId);
+    if (!queryCarPrice.exec()) {
+        ui->ErrorText_2->setText("Error selecting car price");
+        return;
+    }
+    if (!queryCarPrice.next()) {
+        ui->ErrorText_2->setText("Car not found");
+        return;
+    }
+    int rentpriceday = queryCarPrice.value(0).toInt();
+    int price = days * rentpriceday;
 
-
-    //add price
-    QSqlQuery queryPrice;
-      queryPrice.prepare("UPDATE rentdatedb SET price = :price, days = :days WHERE userid = :userid AND carid = :carid");
-      queryPrice.bindValue(":price", price);
-      queryPrice.bindValue(":days", days);
-      queryPrice.bindValue(":userid", getId());
-      queryPrice.bindValue(":carid", carId);
-     if (!queryPrice.exec()) {
-       ui->ErrorText_2->setText("Error updating price and days");
-       return;
-     }
-
+    QSqlQuery queryUpdatePriceAndDays;
+    queryUpdatePriceAndDays.prepare("UPDATE rentdatedb SET price = :price, days = :days WHERE userid = :userid AND carid = :carid AND price = '0' ");
+    queryUpdatePriceAndDays.bindValue(":price", price);
+    queryUpdatePriceAndDays.bindValue(":days", days);
+    queryUpdatePriceAndDays.bindValue(":userid", getId());
+    queryUpdatePriceAndDays.bindValue(":carid", carId);
+    if (!queryUpdatePriceAndDays.exec()) {
+        ui->ErrorText_2->setText("Error updating price and days");
+        return;
+    }
 
     // Update the car's rentedbyid to 0
     QSqlQuery queryReturn;
@@ -281,7 +281,27 @@ void AppWindow::on_ReturnBtn_clicked() {
 
     //finish
     ui->ErrorText_2->setText("Returned!");
+    ui->CarsIdReturnInput->setText("");
     QTimer::singleShot(2000, [this] { ui->ErrorText_2->setText(""); });
+
+    // price text
+    QSqlQuery queryPriceCounter;
+    queryPriceCounter.prepare("SELECT SUM(price) FROM rentdatedb WHERE userid = :userid AND price > 1");
+    queryPriceCounter.bindValue(":userid", getId());
+    if (!queryPriceCounter.exec()) {
+        ui->PriceShow->setText("Error opening price!");
+        QTimer::singleShot(2000, [this] { ui->ErrorText->setText(""); });
+        return;
+    }
+    if (!queryPriceCounter.next()) {
+        ui->PriceShow->setText("Price not found!");
+        QTimer::singleShot(2000, [this] { ui->ErrorText->setText(""); });
+        return;
+    }
+    int priceSum = queryPriceCounter.value(0).toInt();
+    QString sum = QString::number(priceSum);
+    ui->PriceShow->setText(sum + "$");
+
     // Refresh the table views
     refreshTableViews();
 }

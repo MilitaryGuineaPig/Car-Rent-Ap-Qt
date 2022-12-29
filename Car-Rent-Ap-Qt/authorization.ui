@@ -11,21 +11,25 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Car Rent</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/images/car.png</normaloff>:/images/car.png</iconset>
   </property>
   <widget class="QLabel" name="UserText">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>170</x>
      <y>250</y>
-     <width>100</width>
-     <height>25</height>
+     <width>160</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Segoe Print</family>
-     <pointsize>11</pointsize>
+     <pointsize>18</pointsize>
      <italic>false</italic>
      <bold>true</bold>
      <underline>false</underline>
@@ -35,8 +39,9 @@
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 11pt &quot;Segoe Print&quot;;
-color: rgba(0, 0, 0, 150);</string>
+    <string notr="true">font: 700 18pt &quot;Segoe Print&quot;;
+color: rgb(0, 0, 0);
+</string>
    </property>
    <property name="text">
     <string>Username</string>
@@ -73,11 +78,16 @@ color: rgba(0, 0, 0, 150);</string>
   <widget class="QPushButton" name="CreateBtn">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>420</y>
-     <width>100</width>
-     <height>25</height>
+     <x>150</x>
+     <y>450</y>
+     <width>200</width>
+     <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
@@ -106,10 +116,10 @@ text-align: center;
   <widget class="QLabel" name="BlurImage">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>110</y>
-     <width>250</width>
-     <height>350</height>
+     <x>100</x>
+     <y>100</y>
+     <width>300</width>
+     <height>400</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -126,9 +136,9 @@ border-radius: 30px;
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>280</y>
+     <y>290</y>
      <width>150</width>
-     <height>25</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="layoutDirection">
@@ -142,16 +152,16 @@ border-radius: 10px;</string>
   <widget class="QLabel" name="PasswdText">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>310</y>
-     <width>100</width>
-     <height>25</height>
+     <x>170</x>
+     <y>330</y>
+     <width>160</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Segoe Print</family>
-     <pointsize>11</pointsize>
+     <pointsize>18</pointsize>
      <italic>false</italic>
      <bold>true</bold>
      <underline>false</underline>
@@ -161,8 +171,9 @@ border-radius: 10px;</string>
     <enum>Qt::RightToLeft</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 11pt &quot;Segoe Print&quot;;
-color: rgba(0, 0, 0, 150);</string>
+    <string notr="true">font: 700 18pt &quot;Segoe Print&quot;;
+color: rgb(0, 0, 0);
+</string>
    </property>
    <property name="text">
     <string>Password</string>
@@ -175,9 +186,9 @@ color: rgba(0, 0, 0, 150);</string>
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>340</y>
+     <y>360</y>
      <width>150</width>
-     <height>25</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="layoutDirection">
@@ -198,7 +209,7 @@ border-radius: 10px;</string>
     </rect>
    </property>
    <property name="text">
-    <string>-</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="BgImage">
@@ -211,7 +222,7 @@ border-radius: 10px;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/darkBg.jpg);
+    <string notr="true">background-color: rgb(48, 41, 41);
 </string>
    </property>
    <property name="text">
@@ -221,11 +232,16 @@ border-radius: 10px;</string>
   <widget class="QPushButton" name="SingInBtn">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>400</y>
-     <width>100</width>
-     <height>25</height>
+     <x>150</x>
+     <y>420</y>
+     <width>200</width>
+     <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
@@ -247,18 +263,33 @@ text-align: center;
    <property name="text">
     <string>Sing In</string>
    </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="ErrorText">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>370</y>
-     <width>141</width>
-     <height>31</height>
+     <x>150</x>
+     <y>395</y>
+     <width>200</width>
+     <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Cascadia Code</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(115, 0, 2);</string>
+   </property>
    <property name="text">
-    <string>-</string>
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <zorder>BgImage</zorder>

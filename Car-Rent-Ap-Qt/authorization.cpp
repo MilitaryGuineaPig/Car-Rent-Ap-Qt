@@ -20,9 +20,8 @@ authorization::authorization(QWidget *parent) :
     mydb.setPort(3306);
     mydb.setPassword("0000");
     mydb.setDatabaseName("carrentdb");
-    if (!mydb.open()){ui->infoDB->setText("000");}
-    else{ui->infoDB->setText("111");}
-
+    mydb.open();
+    if (!mydb.isOpen()){ui->infoDB->setText("Error");}
 }
 
 authorization::~authorization(){ delete ui;}
@@ -47,13 +46,12 @@ void authorization::on_SingInBtn_clicked(){
        }
        if (query.next()) {
            userId = query.value(0).toInt();
-           qDebug("User logged in successfully. User ID: %d", userId);
            hide();
            AppWindow AppWind;
            AppWind.setModal(true);
            AppWind.exec();
        } else {
-           ui->ErrorText->setText("Invalid username or password");
+           ui->ErrorText->setText("Invalid");
        }
 
 }

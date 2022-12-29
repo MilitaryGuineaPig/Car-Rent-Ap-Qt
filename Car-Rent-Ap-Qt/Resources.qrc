@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>profile.png</file>
-        <file>darkBg.jpg</file>
+        <file>car.png</file>
     </qresource>
 </RCC>
